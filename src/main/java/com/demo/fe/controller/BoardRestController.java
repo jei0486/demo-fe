@@ -20,7 +20,7 @@ public class BoardRestController {
 
     @Operation(summary = "게시물 작성", description = "1) 게시물 작성")
     @PostMapping("/board")
-    private Board insertBoard(@Valid Board board){
+    private Board insertBoard(@Valid @RequestBody Board board){
         return boardService.insertBoard(board);
     }
 
@@ -39,7 +39,7 @@ public class BoardRestController {
 
     @Operation(summary = "게시물 수정", description = "4) 게시물 수정")
     @PutMapping("/board/{boardId}")
-    private Board updateBoard(@PathVariable Long boardId,@Valid Board board){
+    private Board updateBoard(@PathVariable Long boardId,@Valid @RequestBody Board board){
         return boardService.updateBoard(boardId,board);
     }
 

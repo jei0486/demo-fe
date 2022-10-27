@@ -51,7 +51,8 @@
             $.ajax({
                   type : "PUT",
                   url  : "/board/" + boardId,
-                  data : reqData,
+                  contentType: 'application/json; charset=utf-8',
+                  data: JSON.stringify(reqData),
                   success : function (e) {
                     console.log(e);
                       location.href="/detail/" + boardId

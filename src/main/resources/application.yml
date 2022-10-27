@@ -1,11 +1,6 @@
 spring:
-#  config:
-#    activate:
-#      on-profile: production
-
   application:
     name: demo-fe
-
   messages:
     encoding: UTF-8
   thymeleaf:
@@ -19,7 +14,7 @@ logging:
   level:
     org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
 
-custom.api.url.demo-api: http://localhost:8088
+# custom.api.url.demo-api: demo-api-svc.api:8088
 
 ### actuator 관련 설정 (메트릭 엔드포인트)
 ### localhost:9099/actuator/prometheus
@@ -28,3 +23,6 @@ management:
     web:
       exposure:
         include: metrics, prometheus
+
+#server.port: 9099
+

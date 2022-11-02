@@ -1,5 +1,6 @@
 
 custom.api.url.demo-api: http://localhost:7077
+#custom.api.url.demo-api: http://host.docker.internal:7077
 
 
 server:

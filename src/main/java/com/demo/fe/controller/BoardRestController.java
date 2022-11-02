@@ -11,9 +11,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "Board APIs", description = "Board APIs for demo purpose")
-@RequiredArgsConstructor
 @RequestMapping("/boards")
 @RestController
+@RequiredArgsConstructor
 public class BoardRestController {
 
     private final BoardService boardService;

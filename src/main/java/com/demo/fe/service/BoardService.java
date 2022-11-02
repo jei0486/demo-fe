@@ -4,7 +4,6 @@ import com.demo.fe.config.WebClientConfig;
 import com.demo.fe.model.Board;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -76,9 +75,6 @@ public class BoardService {
         return client
                 .put()
                 .uri("/boards/" + boardId)
-//                .uri(uriBuilder -> uriBuilder
-//                        .path("/boards/{id}")
-//                        .build(boardId))
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(board)
                 .retrieve()
@@ -93,9 +89,6 @@ public class BoardService {
         return client
                 .delete()
                 .uri("/boards/" + boardId)
-//                .uri(uriBuilder -> uriBuilder
-//                        .path("/boards/{id}")
-//                        .build(boardId))
                 .retrieve()
                 // delete() 함수 의 특성상 response는 Void.class 로 처리
                 .bodyToMono(Void.class)

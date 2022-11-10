@@ -3,7 +3,8 @@
 #WORKDIR /home
 #RUN gradle build --no-daemon
 
-FROM openjdk:11.0.11-jre-slim
+#FROM openjdk:11.0.11-jre-slim
+FROM openjdk:11.0.14.1-jre
 EXPOSE 9099
 
 RUN mkdir /app

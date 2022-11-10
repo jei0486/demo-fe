@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-fe-svc
+  namespace: fe
+  labels:
+    app: demo-fe
+spec:
+  ports:
+    - name: rest
+      port: 9099
+      targetPort: http
+  selector:
+    app: demo-fe
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-fe
+  namespace: fe
+  labels:
+    app: demo-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-fe
+  template:
+    metadata:
+      labels:
+        app: demo-fe
+    spec:
+      containers:
+        - name: demo-fe
+          #image: docker.io/jei0486/demo-fe:v0.7
+          image: docker.io/jei0486/demo-fe:v1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 9099
+          command: ["java"]
+          # args: ['-jar', '/app/application.jar', '--spring.config.locatin=/config/application.yaml']
+          args: ['-cp', '@/app/jib-classpath-file','com.demo.fe.DemoFeApplication', '--spring.config.locatin=/config/application.yaml']
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          env:
+            - name: 'spring.application.name'
+              value: 'demo-fe'
+      volumes:
+        - name: config
+          configMap:
+            name: demo-fe-configmap

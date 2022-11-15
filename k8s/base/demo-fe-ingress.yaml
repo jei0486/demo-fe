@@ -3,12 +3,15 @@ kind: Ingress
 metadata:
   name: demo-fe-ingress
   namespace: fe
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - http:
+    - host: "demo.com"
+      http:
         paths:
-          - path: /
-            pathType: Prefix
+          - pathType: Prefix
+            path: "/"
             backend:
               service:
                 name: demo-fe-svc

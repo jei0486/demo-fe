@@ -14,13 +14,17 @@ import java.util.List;
     View Controller
  */
 @RequiredArgsConstructor
+@RequestMapping("/boards")
 @Controller
 public class BoardController {
 
     private final BoardService boardService;
 
-    // 게시물 상세보기
-    @GetMapping("/detail/{boardId}")
+
+
+
+    // 게시물 상세보기 페이지 이동
+    @GetMapping("/{boardId}")
     private String boardDetail(Model model,@PathVariable Long boardId){
         Board detailBoard = boardService.getDetailBoard(boardId);
         model.addAttribute("board",detailBoard);
@@ -28,7 +32,7 @@ public class BoardController {
     }
 
     // 게시물 리스트
-    @GetMapping("/boardList")
+    @GetMapping("")
     private String boardList(Model model){
         List<Board> boardList = boardService.getBoardList();
         model.addAttribute("list",boardList);
@@ -36,7 +40,7 @@ public class BoardController {
     }
 
     // 게시물 작성페이지로 이동
-    @GetMapping("/page/insert")
+    @GetMapping("/insert")
     private String goInsertPage(Model model){
         return "board-insert";
     }
@@ -53,7 +57,7 @@ public class BoardController {
     }
 
     // 수정 페이지로 이동
-    @GetMapping("/page/update/{boardId}")
+    @GetMapping("/update/{boardId}")
     private String goUpdatePage (Model model,@PathVariable Long boardId){
         model.addAttribute("board",boardService.getDetailBoard(boardId));
         return "board-update";

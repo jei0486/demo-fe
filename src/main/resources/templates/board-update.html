@@ -50,12 +50,12 @@
 
             $.ajax({
                   type : "PUT",
-                  url  : "/boards/" + boardId,
+                  url  : "/api/boards/" + boardId,
                   contentType: 'application/json; charset=utf-8',
                   data: JSON.stringify(reqData),
                   success : function (e) {
                     console.log(e);
-                      location.href="/detail/" + boardId
+                      location.href="/boards/" + boardId
                   },
                   error : function (e) {
                       alert(e.responseText);
@@ -108,7 +108,7 @@
 
     <div class="board_btn_div">
         <button class="board_reg_button" id="board_reg_button" type="button" th:onclick="'javascript:updateBoard(' + ${board.seq} + ')'" >수정</button>
-        <a class="board_list_link" href="/boardList">목록 이동</a>
+        <a class="board_list_link" href="/boards">목록 이동</a>
     </div>
 </body>
 </html>

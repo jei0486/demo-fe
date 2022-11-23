@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "Board APIs", description = "Board APIs for demo purpose")
-@RequestMapping("/boards")
+@RequestMapping("/api/boards")
 @RestController
 @RequiredArgsConstructor
 public class BoardRestController {
@@ -48,5 +48,7 @@ public class BoardRestController {
     private Void deleteBoard(@PathVariable Long boardId){
         return boardService.deleteBoard(boardId);
     }
+
+
 
 }

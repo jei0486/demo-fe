@@ -4,4 +4,4 @@ custom.api.url.demo-api: http://localhost:7077
 
 
 server:
-  port: 8080
+  port: 8088

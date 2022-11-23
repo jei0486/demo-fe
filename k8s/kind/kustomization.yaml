@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - demo-fe.yaml
   - demo-fe-cm.yaml
-  - demo-fe-ingress.yaml
 
 images:
   - name: jei0486/demo-fe

@@ -18,11 +18,11 @@ logging:
 
 ### actuator 관련 설정 (메트릭 엔드포인트)
 ### localhost:9099/actuator/prometheus
-management:
-  endpoints:
-    web:
-      exposure:
-        include: metrics, prometheus
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
 
 #server.port: 9099
 

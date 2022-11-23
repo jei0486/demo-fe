@@ -38,13 +38,14 @@
                     return false;
                 }
             });
+
         });
     </script>
 </head>
 <body>
 <h1>Board Write</h1>
 
-<form method="post"  name="board_form" action="/insertBoard">
+<form method="post"  name="board_form" action="/boards/insertBoard">
     <table class="board-form">
         <tbody>
         <tr>
@@ -70,7 +71,7 @@
 
     <div class="board_btn_div">
         <button class="board_reg_button" id="board_reg_button" type="submit"> 글쓰기</button>
-        <a class="board_list_link" href="/boardList">목록 이동</a>
+        <a class="board_list_link" href="/boards">목록 이동</a>
     </div>
 </form>
 </body>

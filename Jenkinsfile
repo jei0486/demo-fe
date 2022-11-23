@@ -50,11 +50,18 @@ agent any
             }
         }
 
+        stage('workspace clear'){
+            steps {
+                cleanWs()
+            }
+        }
+
         stage('Clean docker image') {
             steps{
                 sh "docker rmi $REGISTRY:${TAG}"
             }
         }
+
 
     }
 }

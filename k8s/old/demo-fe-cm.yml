@@ -9,7 +9,7 @@ data:
       application:
         name: demo-fe
       messages:
-        encoding: UTF-8
+        encoding: UTF-8 
       thymeleaf:
         encoding: UTF-8
 

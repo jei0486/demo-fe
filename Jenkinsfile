@@ -56,12 +56,6 @@ agent any
             }
         }
 
-        stage('Clean docker image') {
-            steps{
-                sh "docker rmi $REGISTRY:${TAG}"
-            }
-        }
-
 
     }
 }

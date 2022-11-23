@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: demo-fe
-          image: docker.io/jei0486/demo-fe:v0.7
+          image: docker.io/jei0486/demo-fe:v2
           imagePullPolicy: Always
           ports:
             - name: http

@@ -2,8 +2,10 @@ pipeline {
 agent any
     environment {
         SOURCECODE_JENKINS_CREDENTIAL_ID = 'jei0486'
-        SOURCE_CODE_URL = 'https://github.com/jei0486/demo-fe'
+        SOURCE_CODE_URL = 'https://github.com/jei0486/demo-fe.git'
         RELEASE_BRANCH = 'main'
+        GIT_OPS_URL = 'github.com/jei0486/demo-gitops.git'
+        GIT_OPS_BRANCH = 'main'
         REGISTRY = 'jei0486/demo-fe'
     }
 
@@ -30,7 +32,7 @@ agent any
                 sh 'pwd'
                 sh '''
                 chmod +x gradlew
-                ./gradlew clean build
+                ./gradlew clean bootJar
                 '''
             }
         }
@@ -46,16 +48,41 @@ agent any
 
         stage('Deploy docker image') {
             steps {
-                withDockerRegistry([ credentialsId: 'dockerhub', url: '' ]) { sh 'docker push $REGISTRY:${TAG}'}
+                withDockerRegistry([ credentialsId: 'dockerhub', url: '' ]) {
+                 sh 'docker push $REGISTRY:${TAG}'
+                }
             }
         }
 
-        stage('workspace clear'){
+        stage('Workspace Clear'){
             steps {
                 cleanWs()
             }
         }
 
+     stage('GitOps Update') {
+
+            steps {
+               print "======GitOps Update====="
+
+               withCredentials([string(credentialsId: "$SOURCECODE_JENKINS_CREDENTIAL_ID", variable: 'SECRET')]) {//set SECRET with the credential content
+               git url: "https://$GIT_OPS_URL",
+                   branch: "$GIT_OPS_BRANCH",
+                   credentialsId: "$SOURCECODE_JENKINS_CREDENTIAL_ID"
+                      sh '''
+                        ls -la
+                        cd ./demo-fe
+                        kustomize edit set image jei0486/demo-fe:${TAG}
+                        git config user.email "jei0486@gmail.com"
+                        git config user.name "jei0486"
+                        git add .
+                        git commit -am "update image tag ${TAG}"
+                        git remote set-url --push origin https://${SECRET}@$GIT_OPS_URL
+                        git push origin $GIT_OPS_BRANCH
+                        '''
+                }
+            }
+       }
 
     }
 }

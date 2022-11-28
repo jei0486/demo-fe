@@ -9,6 +9,7 @@ agent any
         GIT_OPS_URL = 'github.com/jei0486/demo-gitops.git'
         GIT_OPS_BRANCH = 'main'
         REGISTRY = 'jei0486/demo-fe'
+        VERSION = 'v' + env.BUILD_NUMBER
     }
 
     stages {
@@ -16,6 +17,8 @@ agent any
             steps {
                 echo 'init'
                 echo "Current workspace : ${workspace}"
+                echo 'Build Number: ' + env.BUILD_NUMBER
+                echo "VERSION : $VERSION"
             }
         }
 

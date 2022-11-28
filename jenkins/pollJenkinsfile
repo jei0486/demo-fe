@@ -1,3 +1,4 @@
+
 pipeline {
 agent any
     environment {
@@ -32,7 +33,7 @@ agent any
         stage('Deploy docker image') {
             steps {
                 withDockerRegistry([ credentialsId: 'dockerhub', url: '' ]) {
-                 sh "skaffold build -p dev -t ${BUILD_NUMBER}"
+                 sh "skaffold build -p dev -t ${env:BUILD_NUMBER}"
                 }
             }
         }
@@ -55,11 +56,11 @@ agent any
                       sh '''
                         ls -la
                         cd ./demo-fe
-                        kustomize edit set image jei0486/demo-fe:${BUILD_NUMBER}
+                        kustomize edit set image jei0486/demo-fe:${env:BUILD_NUMBER}
                         git config user.email "jei0486@gmail.com"
                         git config user.name "jei0486"
                         git add .
-                        git commit -am "update image tag ${BUILD_NUMBER}"
+                        git commit -am "update image tag ${env:BUILD_NUMBER}"
                         git remote set-url --push origin https://${SECRET}@$GIT_OPS_URL
                         git push origin $GIT_OPS_BRANCH
                         '''

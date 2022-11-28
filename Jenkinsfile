@@ -54,8 +54,8 @@ pipeline {
                    credentialsId: "$SOURCECODE_JENKINS_CREDENTIAL_ID"
                       sh '''
                         ls -la
-                        cd ./demo-api
-                        kustomize edit set image jei0486/demo-api:${TAG}
+                        cd ./demo-fe
+                        kustomize edit set image jei0486/demo-fe:${TAG}
                         git config user.email "jei0486@gmail.com"
                         git config user.name "jei0486"
                         git add .

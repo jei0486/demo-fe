@@ -40,11 +40,11 @@ agent any
             }
         }
 
-        stage('Workspace Clear'){
-            steps {
-                cleanWs()
-            }
-        }
+    }
 
+    post {
+        always {
+            cleanWs()
+        }
     }
 }

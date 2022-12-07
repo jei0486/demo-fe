@@ -16,4 +16,4 @@ spec:
               service:
                 name: demo-fe-svc
                 port:
-                  number: 9099
+                  number: 8080

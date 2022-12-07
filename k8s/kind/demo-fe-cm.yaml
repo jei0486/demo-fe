@@ -21,7 +21,7 @@ data:
       level:
         org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
 
-    custom.api.url.demo-api: http://demo-api-svc.api:8088
+    custom.api.url.demo-api: http://demo-api-svc.api:8080
 
     management:
       endpoints:
@@ -29,4 +29,4 @@ data:
           exposure:
             include: metrics, prometheus
     server:
-      port: 9099
+      port: 8080

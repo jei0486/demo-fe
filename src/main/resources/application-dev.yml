@@ -6,8 +6,8 @@ spring:
   thymeleaf:
     encoding: UTF-8
 
-logging:
-  level:
-    org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
+
+custom.api.url.demo-api: http://demo-api-svc.api:8080
+
 
 

@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
     - name: rest
-      port: 9099
+      port: 8080
       targetPort: http
   selector:
     app: demo-fe
@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 9099
+              containerPort: 8080
           command: ["java"]
           args: ['-cp', '@/app/jib-classpath-file','com.demo.fe.DemoFeApplication', '--spring.config.locatin=/config/application.yaml']
           volumeMounts:
